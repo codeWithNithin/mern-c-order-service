@@ -1,10 +1,15 @@
 import app from './app.js'
-import { Config } from './config/env.js'
+import { initDb } from './config/db.js'
 import logger from './config/logger.js'
+import config from 'config'
 
-function startServer(): void {
+async function startServer() {
     try {
-        const PORT: number = Number(Config.port)
+        await initDb()
+
+        logger.info('database has been connected')
+
+        const PORT: number = Number(config.get('server.port')) || 3000
 
         app.listen(PORT, () => {
             logger.info('server running at PORT', { port: PORT })
