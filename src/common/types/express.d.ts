@@ -8,6 +8,9 @@ declare global {
                 id?: string
                 role: string
                 tenantId?: string
+                firstName: string
+                lastName: string
+                email: string
             }
         }
     }
